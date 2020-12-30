@@ -16,20 +16,20 @@ module Api
       def create
         @molecule = Molecule.new(molecule_params)#.merge(user: current_user))
 
-        if @molecule.save
+        if @molecule.save
           render json: @molecule, status: :created
-        else
+        else
           render json: @molecule.errors, status: :unprocessable_entity
-        end
+        end
       end
 
       # PATCH/PUT /api/v1/molecules/1
       def update
-        if @molecule.update(molecule_params)
+        if @molecule.update(molecule_params)
           render json: @molecule
-        else
+        else
           render json: @molecule.errors, status: :unprocessable_entity
-        end
+        end
       end
 
       # DELETE /api/v1/molecules/1
