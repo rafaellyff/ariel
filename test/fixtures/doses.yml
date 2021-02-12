@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hormone: one
+  expected_date: 2021-01-20
+  dose: 9.99
+  realized_date: 2021-01-20
+  realized_dose: 9.99
+  annotation: MyString
+  status: 
+  new_date: 2021-01-20
+  apply_on: MyString
+
+two:
+  hormone: two
+  expected_date: 2021-01-20
+  dose: 9.99
+  realized_date: 2021-01-20
+  realized_dose: 9.99
+  annotation: MyString
+  status: 
+  new_date: 2021-01-20
+  apply_on: MyString

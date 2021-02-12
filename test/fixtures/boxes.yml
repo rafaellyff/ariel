@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 1
+  remaining_amount: 1
+  date_start: 2021-01-20
+  expiration_date: 2021-01-20
+  hormone: one
+
+two:
+  amount: 1
+  remaining_amount: 1
+  date_start: 2021-01-20
+  expiration_date: 2021-01-20
+  hormone: two

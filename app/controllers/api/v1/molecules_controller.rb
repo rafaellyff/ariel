@@ -40,7 +40,7 @@ module Api
       private
       
         def set_molecule
-          @molecule = molecule.find(params[:id])
+          @molecule = Molecule.find(params[:id])
         end
     
         def molecule_params

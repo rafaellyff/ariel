@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  molecule: one
+  name: MyString
+  periodicity: 1
+  unit: MyString
+  unit_per_dose: 9.99
+  user: one
+
+two:
+  molecule: two
+  name: MyString
+  periodicity: 1
+  unit: MyString
+  unit_per_dose: 9.99
+  user: two
