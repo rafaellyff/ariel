@@ -4,7 +4,7 @@ module Api
       before_action :set_hormone, only: [:show, :update, :destroy]
 
       def index
-        @hormones = Hormone.all
+        @hormones = Hormone.where(user_id:  params[:user_id])
         render json: @hormones.to_json(methods: [:boxes_count], :include => {:molecule => {:only => :name}}) 
       end
       
@@ -14,10 +14,10 @@ module Api
       end
   
       def create
-        @hormone = Hormone.new(hormone_params)#.merge(user: current_user))
+        @hormone = Hormone.new(hormone_params)
 
         if @hormone.save
-          render json: @hormone, status: :created
+          render json: @hormone.to_json(methods: [:boxes_count], :include => {:molecule => {:only => :name}}) , status: :created
         else
           render json: @hormone.errors, status: :unprocessable_entity
         end

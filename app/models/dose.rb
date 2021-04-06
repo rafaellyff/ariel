@@ -6,6 +6,7 @@ class Dose < ApplicationRecord
   before_create do
     self.amount = self.hormone.unit_per_dose
     self.status = 'scheduled'
+    self.hormone_name = self.hormone.name
   end
 
   enum status: {
