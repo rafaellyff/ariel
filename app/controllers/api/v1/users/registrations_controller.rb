@@ -3,30 +3,20 @@ module Api
     module Users
       class RegistrationsController < Devise::RegistrationsController
         respond_to :json
-
-        acts_as_token_authentication_handler_for User
-        
-        skip_before_action :authenticate_entity_from_token!, only: [:create], raise: false
-        skip_before_action :authenticate_entity!, only: [:create], raise: false
-  
-        skip_before_action :authenticate_scope!, raise: false
-        append_before_action :authenticate_scope!, only: [:destroy]
-  
   
         # POST /users
         def create
           build_resource(sign_up_params)
   
           if resource.save
-            sign_up(resource_name, resource)
-            head :created
+            user = sign_up(resource_name, resource)
+            render json: user
           else
             clean_up_passwords resource
             render json: { errors: resource.errors.full_messages }, status: :unprocessable_entity
           end
         end
-  
-  
+
         # DELETE /users/:id
         def destroy
           resource.deactivated_at = DateTime.now

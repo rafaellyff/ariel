@@ -3,20 +3,17 @@ module Api
     module Users
       class SessionsController < Devise::SessionsController
         respond_to :json
-
-        acts_as_token_authentication_handler_for User, fallback_to_devise: false
-        skip_before_action :authenticate_entity_from_token!, only: [:create], raise: false
-        skip_before_action :authenticate_entity!, only: [:create], raise: false
-  
+        
         # POST /users/sign_in
         def create
-          allow_params_authentication!
-          self.resource = warden.authenticate!(auth_options)
-  
-          reset_token resource
-          render file: 'v1/custom_devise/sessions/create'
+          user = User.find_by_email(sign_in_params[:email])
+      
+          if user && user.valid_password?(sign_in_params[:password])
+            render json: user
+          else
+            render json: { errors: { 'email or password' => ['is invalid'] } }, status: :unprocessable_entity
+          end
         end
-  
   
         # DELETE /users/sign_out
         def destroy

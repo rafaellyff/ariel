@@ -4,8 +4,12 @@ module Api
       before_action :set_box, only: [:show, :update, :destroy]
 
       def index
-        @boxes = Box.all
-        render json: @boxes
+        if params[:hormone_id]
+          @boxes = Box.where(hormone_id: params[:hormone_id])
+          render json: @boxes
+        else
+          render json: { errors: "Erro ao carregar as caixas!" }, status: :bad_request
+        end
       end
       
       # GET /api/v1/boxes/1

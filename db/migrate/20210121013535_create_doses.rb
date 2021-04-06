@@ -7,7 +7,7 @@ class CreateDoses < ActiveRecord::Migration[5.2]
       t.date :realized_date
       t.decimal :realized_amount
       t.string :annotation
-      t.strig :status
+      t.string :status
       t.date :new_date
       t.string :apply_on
 

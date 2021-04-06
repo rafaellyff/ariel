@@ -1,6 +1,7 @@
 class Hormone < ApplicationRecord
   belongs_to :molecule
   belongs_to :user
+  has_many :boxes
   
   validates_presence_of :name, :molecule_id, :periodicity, :unit, :unit_per_dose, :user_id
   validates :periodicity, numericality: { greater_than_or_equal_to: 1, only_integer: true }
@@ -16,4 +17,8 @@ class Hormone < ApplicationRecord
     sachet: 'sachet',
     other: 'other'
   }
+
+  def boxes_count
+    self.boxes.count
+  end
 end

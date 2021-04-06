@@ -5,12 +5,12 @@ module Api
 
       def index
         @hormones = Hormone.all
-        render json: @hormones
+        render json: @hormones.to_json(methods: [:boxes_count], :include => {:molecule => {:only => :name}}) 
       end
       
       # GET /api/v1/hormones/1
       def show
-        render json: @hormone
+        render json: @hormone , :include => {:molecule => {:only => :name}}
       end
   
       def create

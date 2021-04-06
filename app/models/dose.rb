@@ -1,8 +1,12 @@
 class Dose < ApplicationRecord
   belongs_to :hormone
 
-  validates_presence_of :hormone_id, :amount, :expected_date, :status
-  validates :amount, numericality: { greater_than_or_equal_to: 0 }
+  validates_presence_of :hormone_id, :scheduled_date
+
+  before_create do
+    self.amount = self.hormone.unit_per_dose
+    self.status = 'scheduled'
+  end
 
   enum status: {
     scheduled: 'scheduled',
@@ -12,6 +16,8 @@ class Dose < ApplicationRecord
 
   enum apply_on: {
     left: 'left',
-    right: 'right'
+    right: 'right',
+    indifferent: 'indifferent'
   }
+
 end
